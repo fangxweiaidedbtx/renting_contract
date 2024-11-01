@@ -1,0 +1,68 @@
+# Dependency directories
+node_modules/
+bower_components/
+
+# Output directories
+build/
+dist/
+out/
+
+geth_dir/
+
+# Compiled files
+*.map
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+
+# Environment files
+.env
+.env.*.local
+
+# Browserslist configuration file
+.browserslistrc
+
+# Dependency directories for node
+node_modules/
+npm-debug.log
+
+# Editor files
+*.swp
+*.swo
+*.swn
+*~
+
+
+
+# Truffle compiled contracts
+build/contracts/
+
+# Truffle console logs
+logs/
+
+# Truffle development network data
+development.json
+
+# Truffle migration state
+migrations_state.json
+
+# Truffle compiled contracts
+build/contracts/
+
+# Truffle compiled source maps
+build/source-maps/
+
+# Truffle compiled artifacts
+build/artifacts/
+
+# Truffle compiled migrations
+build/migrations/
+
+# Truffle compiled tests
+build/tests/
