@@ -1,4 +1,7 @@
-
+// 引入 Web3 构造函数和 HttpProvider
+// const Web3 = require('web3').Web3;
+// const HttpProvider = require('web3').HttpProvider;
+// const functionC = require('./function.js');
 
 import Web3 from 'web3'; 
 import { HttpProvider } from 'web3'; 
@@ -276,76 +279,6 @@ let contractABI =[
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getAllProperties",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "addr",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "area",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "rent",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "deposit",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address payable",
-						"name": "landlord",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "tenant",
-						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "isRented",
-						"type": "bool"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "hashLock",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timeLock",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "nextRentDue",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "invalid",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct RentalContract.RentalProperty[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -544,17 +477,13 @@ let contractABI =[
 	}
 ]
 
-const contractAddress = '0x61DA4B38499931FB6fc18dfbA87D91A22ff8f636';
+const contractAddress = '0xf0a4aa214dfa621b1d40a14c8Fc9674C9491930f';
 
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-Functions.init_function(contract);
 
 
-let tx =await Functions.publishProperty(contract,'岭南新村',100,1000,'0xb792cc17772069d67268cbefdc2f7aea890c6323');
+let tx = await Functions.publishProperty(contract,'岭南新村',100,1000,web3.eth.accounts[0]);
 
-let secert_key = 'hello world';
-let hash_lock = await Functions.hash256(secert_key);
-console.log(hash_lock);
-// let tx2 = await Functions.rentProperty(contract,1,hash_lock,'0x117249D3593aF0f5c471C6dC2081CD9Ada6E8806');
-// console.log(tx2);
+
+// console.log(tx);

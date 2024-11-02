@@ -1,0 +1,22 @@
+
+eth.accounts
+personal
+eth.accounts
+0xb792cc17772069d67268cbefdc2f7aea890c6323
+0x9b7f799aa0c13b3aece687c890577d099d4e11dd
+eth.accounts
+eth.sendTransaction({from: web3.eth.accounts[0], to: web3.eth.accounts[1], value: web3.toWei(1, "ether")});
+eth.sendTransaction({from: web3.eth.accounts[0], to: web3.eth.accounts[1], value: web3.toWei(1, "wei")});
+eth.sendTransaction({from: web3.eth.accounts[0], to: web3.eth.accounts[1], value: web3.toWei(1000, "ether")});
+eth.sendTransaction({from: web3.eth.accounts[0], to: web3.eth.accounts[2], value: web3.toWei(1000, "ether")});
+eth.sendTransaction({from: web3.eth.accounts[0], to: web3.eth.accounts[3], value: web3.toWei(1000, "ether")});
+web3
+web3.version
+web3.version()
+web3.version
+web3.eth.accounts
+personal
+web3.eth.accounts
+curl
+web3.personal
+web3.eth.accounts
