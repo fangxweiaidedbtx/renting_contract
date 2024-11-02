@@ -29,3 +29,19 @@ npm install crypto-js
 
 
 
+给新用户进行转账
+
+eth.sendTransaction({
+  from: "0xe85675217431f832eab73d8f6d90e5ed697267c3",
+  to: "0xeb3c1e58d902828b7912c35bbdc26f65301cc6b6",
+  value: web3.toWei(10, "ether")
+});
+
+eth.sendTransaction({
+  from: "0xe85675217431f832eab73d8f6d90e5ed697267c3",
+  to: "0x2918a703a15d345a65feb7c8089f2a92e67a096f",
+  value: web3.toWei(10, "ether")
+});
+
+
+

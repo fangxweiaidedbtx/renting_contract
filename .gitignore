@@ -8,7 +8,8 @@ dist/
 out/
 
 geth_dir/
-
+data/
+data/geth/chaindata/LOCK
 # Compiled files
 *.map
 

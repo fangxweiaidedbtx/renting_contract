@@ -40,7 +40,7 @@ contract RentalContract {
 
     // 发布房源信息的功能函数
     function publishProperty(string memory _addr, uint256 _area, uint256 _rent) public payable{
-        require(msg.value >= publish_fee, "Incorrect publish fee amount");
+        require(msg.value == publish_fee, "Incorrect publish fee amount");
         require(_rent > 0, "Rent must be greater than zero");
         propertyCount++;
         properties[propertyCount] = RentalProperty({

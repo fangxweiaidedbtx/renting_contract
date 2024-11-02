@@ -1,16 +1,4 @@
-// 引入 Web3 构造函数和 HttpProvider
-// const Web3 = require('web3').Web3;
-// const HttpProvider = require('web3').HttpProvider;
-// const functionC = require('./function.js');
-
-import Web3 from 'web3'; 
-import { HttpProvider } from 'web3'; 
-import * as Functions from './functions.js';
-
-// 使用新的 Web3 构造函数和 HttpProvider 创建实例
-const web3 = new Web3(new HttpProvider('http://localhost:8545'));
-
-let contractABI =[
+let contractABI = [
 	{
 		"anonymous": false,
 		"inputs": [
@@ -137,55 +125,6 @@ let contractABI =[
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_addr",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_area",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_rent",
-				"type": "uint256"
-			}
-		],
-		"name": "publishProperty",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_propertyId",
-				"type": "uint256"
-			}
-		],
-		"name": "refundHTLC",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_propertyId",
-				"type": "uint256"
-			}
-		],
-		"name": "renewLease",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -217,55 +156,6 @@ let contractABI =[
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_propertyId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "_hashLock",
-				"type": "bytes32"
-			}
-		],
-		"name": "rentProperty",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_propertyId",
-				"type": "uint256"
-			}
-		],
-		"name": "returnDeposit",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_propertyId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_preimage",
-				"type": "string"
-			}
-		],
-		"name": "unlockHTLC",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "book_fee",
 		"outputs": [
@@ -273,6 +163,76 @@ let contractABI =[
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllProperties",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "addr",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "area",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deposit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "landlord",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "tenant",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "isRented",
+						"type": "bool"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "hashLock",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timeLock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nextRentDue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "invalid",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct RentalContract.RentalProperty[]",
+				"name": "",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -437,6 +397,29 @@ let contractABI =[
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_addr",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_area",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_rent",
+				"type": "uint256"
+			}
+		],
+		"name": "publishProperty",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "publish_fee",
 		"outputs": [
@@ -463,6 +446,63 @@ let contractABI =[
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_propertyId",
+				"type": "uint256"
+			}
+		],
+		"name": "refundHTLC",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_propertyId",
+				"type": "uint256"
+			}
+		],
+		"name": "renewLease",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_propertyId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_hashLock",
+				"type": "bytes32"
+			}
+		],
+		"name": "rentProperty",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_propertyId",
+				"type": "uint256"
+			}
+		],
+		"name": "returnDeposit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "timeLock",
 		"outputs": [
@@ -474,16 +514,28 @@ let contractABI =[
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_propertyId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_preimage",
+				"type": "string"
+			}
+		],
+		"name": "unlockHTLC",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
 ]
 
-const contractAddress = '0xf0a4aa214dfa621b1d40a14c8Fc9674C9491930f';
 
-const contract = new web3.eth.Contract(contractABI, contractAddress);
+const contractAddress = '0x2c2f93e0aBE5383386D857FB4ee813f6D06138A8';
 
-
-
-let tx = await Functions.publishProperty(contract,'岭南新村',100,1000,web3.eth.accounts[0]);
-
-
-// console.log(tx);
+export { contractABI, contractAddress };
