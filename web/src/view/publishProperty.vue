@@ -13,6 +13,9 @@
             <el-form-item label="your account address">
                 <el-input v-model="form.usr_addr" placeholder="please input your account address" />
             </el-form-item>
+            <el-form-item label="your contact information">
+                <el-input v-model="form.usr_addr" placeholder="please input your contact information" />
+            </el-form-item>
 
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">publish my property</el-button>
@@ -40,34 +43,6 @@
 
 </template>
 
-<!-- <script>
-export default {
-    data() {
-        return {
-            form: {
-                addr: '',
-                area: '',
-                rent: '',
-                usr_addr: ''
-            },
-            res:{}
-
-        }
-    },
-    methods: {
-        async onSubmit() {
-            try {
-                let ans =await this.publishProperty(this.form.addr, this.form.area, this.form.rent, this.form.usr_addr)
-                this.res.transactionHash = ans.transactionHash
-                //帮忙继续补充
-                console.log(this.res)
-            } catch (error) {
-                console.log(error)
-            }
-        },
-    }
-}
-</script> -->
 
 
 <script>
@@ -78,7 +53,8 @@ export default {
                 addr: '',
                 area: '',
                 rent: '',
-                usr_addr: ''
+                usr_addr: '',
+                contactInformation :''
             },
             res: {
                 blockHash: '',
@@ -98,7 +74,7 @@ export default {
     methods: {
         async onSubmit() {
             try {
-                let ans = await this.publishProperty(this.form.addr, this.form.area, this.form.rent, this.form.usr_addr);
+                let ans = await this.publishProperty(this.form.addr, this.form.area, this.form.rent, this.form.usr_addr,this.contactInformation);
                 this.res = {
                     blockHash: ans.blockHash,
                     blockNumber: ans.blockNumber.toString(), // 转换为字符串，因为bigint在前端可能不被支持

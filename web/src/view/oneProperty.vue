@@ -21,6 +21,7 @@
         <p>nextRentDue:{{result.nextRentDue}}</p>
         <p>rent:{{result.rent}}</p>
         <p>tenant:{{result.tenant}}</p>
+        <p>contact information:{{result.contactInformation  }}</p>
     </div>
     <div v-else>
         <p>this property is not exist or invalid</p>
@@ -46,7 +47,8 @@ export default {
                 isRented:'',
                 nextRentDue:'',
                 tenant:'',
-                timeLock:''
+                timeLock:'',
+                contactInformation:''
             }
         }
     },
@@ -65,6 +67,7 @@ export default {
                 this.result.rent = ans.rent
                 this.result.tenant = ans.tenant
                 this.result.timeLock = ans.timeLock
+                this.result.contactInformation = ans.contactInformation
                 
                 
             } catch (error) {

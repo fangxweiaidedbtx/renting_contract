@@ -69,7 +69,6 @@ export async function getRecoveryFee() {
 
 /**
  * 获取发布费用
- * @param {object} contract - 智能合约的实例
  */
 export async function getPublishFee() {
   try {
@@ -88,7 +87,7 @@ export async function getPublishFee() {
  * @param {number} area - 房源面积
  * @param {number} rent - 房源租金
  */
-export async function publishProperty(addr, area, rent, usr_addr) {
+export async function publishProperty(addr, area, rent, usr_addr,contactInformation) {
 
   try {
     // 发布房源信息的交易
@@ -100,7 +99,7 @@ export async function publishProperty(addr, area, rent, usr_addr) {
       value: publish_fee,
     };
     console.log('send_data:', send_data);
-    const transaction = await contract.methods.publishProperty(addr, area, rent).send(send_data);
+    const transaction = await contract.methods.publishProperty(addr, area, rent,contactInformation).send(send_data);
 
     console.log('Transaction hash:', transaction.transactionHash);
     return transaction;
@@ -149,10 +148,10 @@ export async function rentProperty(propertyId, hashLock, usr_addr) {
  * @param {number} propertyId - 房源ID
  * @param {string} preimage - 原像
  */
-export async function unlockHTLC(propertyId, preimage) {
+export async function unlockHTLC(propertyId, preimage,usr_addr) {
   try {
     // 房东解锁HTLC的交易
-    const transaction = await contract.methods.unlockHTLC(propertyId, preimage);
+    const transaction = await contract.methods.unlockHTLC(propertyId, preimage).send({from :usr_addr});
 
     console.log('Transaction hash:', transaction.transactionHash);
     return transaction;
@@ -165,18 +164,18 @@ export async function unlockHTLC(propertyId, preimage) {
  * 房客申请退款HTLC合约中的资金
  * @param {number} propertyId - 房源ID
  */
-export async function refundHTLC(propertyId) {
+
+
+export async function refundHTLC(propertyId, usr_addr) {
   try {
     // 房客申请退款的交易
-    const transaction = await contract.methods.refundHTLC(propertyId);
-
+    const transaction = await contract.methods.refundHTLC(propertyId).send({ from: usr_addr });
     console.log('Transaction hash:', transaction.transactionHash);
     return transaction;
   } catch (error) {
     console.error('Failed to refund HTLC:', error);
   }
 }
-
 /**
  * 房客续租并支付下一期租金
  * @param {number} propertyId - 房源ID
@@ -235,7 +234,7 @@ export async function hash256(data) {
 
 export async function getAllProperties() {
   try {
-    let propertie_count = await getPropertyCount(contract);
+    let propertie_count = await getPropertyCount();
     let properties = [];
     for (let i = 1; i <= propertie_count; i++) {
       let property = await getProperty(i);
@@ -255,6 +254,18 @@ export async function unlockMyAccount(usr_addr, password) {
     console.error('Failed to unlock account:', error);
   }
 
+}
+
+export async function returnDeposit(propertyId, usr_addr) {
+  try {
+    const transaction = await contract.methods.returnDeposit(propertyId).send({
+      from: usr_addr,
+    });
+    console.log('Transaction hash:', transaction.transactionHash);
+    return transaction;
+  } catch (error) {
+    console.error('Failed to return deposit:', error);
+  }
 }
 
 export { book_fee, recovery_fee, publish_fee };

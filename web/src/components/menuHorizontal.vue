@@ -59,8 +59,20 @@ const handleSelect = (index, indexPath) => {
     case '1-2':
       router.push('/propertyList');
       break;
+    case '2-1':
+      router.push('/getPublishFee');
+      break;
+    case '2-2':
+      router.push('/getRecoveryFee');
+      break;
+    case '2-3':
+      router.push('/getBookFee');
+      break;
     case '3-1':
       router.push('/publishProperty');
+      break;
+    case '3-2':
+      router.push('/unlockHTLC');
       break;
     case '5':
       router.push('/unlockMyAccount');
@@ -68,6 +80,16 @@ const handleSelect = (index, indexPath) => {
     case '4-1':
       router.push('/rentProperty');
       break;
+    case '4-2':
+      router.push('renewLease');
+      break;
+    case '4-3':
+      router.push('refundHTLC');
+      break;
+    case '4-4':
+      router.push('returnDespoit');
+      break;
+    
     // 可以根据需要添加更多的 case
   }
 };

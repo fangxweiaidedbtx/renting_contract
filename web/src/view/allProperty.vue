@@ -13,6 +13,7 @@
         <div>是否已租：{{ item.isRented }}</div>
         <div>下次租金到期：{{ item.nextRentDue }}</div>
         <div>租客：{{ item.tenant =="0x0000000000000000000000000000000000000000"? "not rented" : item.tenant }}</div>
+        <div>联系方式：{{item.contactInformation  }}</div>
       </el-collapse-item>
     </el-collapse>
   </template>
@@ -49,6 +50,7 @@
               nextRentDue: ans.nextRentDue,
               tenant: ans.tenant,
               timeLock: ans.timeLock,
+              contactInformation: ans.contactInformation
             };
             this.result.push(temp);
           }
