@@ -14,7 +14,7 @@
                 <el-input v-model="form.usr_addr" placeholder="please input your account address" />
             </el-form-item>
             <el-form-item label="your contact information">
-                <el-input v-model="form.usr_addr" placeholder="please input your contact information" />
+                <el-input v-model="form.contactInformation" placeholder="please input your contact information" />
             </el-form-item>
 
             <el-form-item>
@@ -74,16 +74,14 @@ export default {
     methods: {
         async onSubmit() {
             try {
-                let ans = await this.publishProperty(this.form.addr, this.form.area, this.form.rent, this.form.usr_addr,this.contactInformation);
+                let ans = await this.publishProperty(this.form.addr, this.form.area, this.form.rent, this.form.usr_addr,this.form.contactInformation);
                 this.res = {
                     blockHash: ans.blockHash,
-                    blockNumber: ans.blockNumber.toString(), // 转换为字符串，因为bigint在前端可能不被支持
+                    blockNumber: ans.blockNumber.toString(), 
                     cumulativeGasUsed: ans.cumulativeGasUsed.toString(),
                     effectiveGasPrice: ans.effectiveGasPrice.toString(),
                     from: ans.from.toString(),
                     gasUsed: ans.gasUsed.toString(),
-                    // logs: ans.logs,
-                    // logsBloom: ans.logsBloom,
                     status: ans.status.toString(),
                     to: ans.to.toString(),
                     transactionHash: ans.transactionHash.toString()

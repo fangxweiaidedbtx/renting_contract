@@ -89,6 +89,7 @@ export async function getPublishFee() {
  */
 export async function publishProperty(addr, area, rent, usr_addr,contactInformation) {
 
+  console.log('publishProperty:', addr, area, rent, usr_addr,contactInformation)
   try {
     // 发布房源信息的交易
     if (publish_fee == null) {
@@ -117,7 +118,6 @@ export async function publishProperty(addr, area, rent, usr_addr,contactInformat
  */
 export async function rentProperty(propertyId, hashLock, usr_addr) {
   try {
-    // 计算总支付金额（租金 + 押金 + 维修费 + 预订费）
     const property = await contract.methods.properties(propertyId).call();
     const rent = property.rent;
     const deposit = property.deposit;
@@ -129,15 +129,12 @@ export async function rentProperty(propertyId, hashLock, usr_addr) {
     }
     const totalPayment = rent + deposit + recovery_fee + book_fee;
 
-    // 房客支付押金和租金的交易
 
     const transaction = await contract.methods.rentProperty(propertyId, hashLock).send({
       from: usr_addr,
       value: totalPayment
     });
     return transaction;
-    // console.log('Transaction hash:', transaction.transactionHash);
-    // return transaction;
   } catch (error) {
     console.error('Failed to rent property:', error);
   }
@@ -172,7 +169,8 @@ export async function refundHTLC(propertyId, usr_addr) {
     const transaction = await contract.methods.refundHTLC(propertyId).send({ from: usr_addr });
     console.log('Transaction hash:', transaction.transactionHash);
     return transaction;
-  } catch (error) {
+  } catch (error) 
+  {
     console.error('Failed to refund HTLC:', error);
   }
 }
@@ -205,27 +203,20 @@ export async function renewLease(propertyId, usr_addr) {
  */
 export async function getProperty(propertyId) {
   try {
-    // 查询房源信息
     const property = await contract.methods.getProperty(propertyId).call();
-    // console.log('Property Details:', property);
     return property;
   } catch (error) {
     console.error('Failed to get property:', error);
   }
 }
-// 哈希256加密算法
 export async function hash256(data) {
-  // 将输入转换为ArrayBuffer
   const encoder = new TextEncoder();
   const dataBuffer = encoder.encode(data);
 
-  // 使用SubtleCrypto API生成SHA-256哈希
   const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
 
-  // 将ArrayBuffer转换为十六进制字符串
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   let hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  // hashHex = Web3.utils.toHex(hashHex);
   hashHex = '0x' + hashHex;
 
   return hashHex;

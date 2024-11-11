@@ -41,9 +41,13 @@
         try {
           let ans = await this.unlockHTLC(this.form.propertyId, this.form.preimage, this.form.usr_addr);
           console.log(ans);
-          this.result = ans;
+          if(ans){
+            this.result = "Successfully unlocked the HTLC and received the deposit and rent";
+          }else{
+            this.result = "Sorry, because the time lock has not expired yet or you are not the corresponding landlord of the room, you cannot proceed with the refund operation"
+          }
         } catch (error) {
-          this.result = error.message;
+          this.result = "Sorry, because the time lock has not expired yet or you are not the corresponding landlord of the room, you cannot proceed with the refund operation"
         }
       }
     }

@@ -1,6 +1,5 @@
 <template>
     <div id="unlockMyAccount">
-      <!-- 提供一个链接，如果用户有 hashLock，可以点击这里获取 -->
       <a href="https://www.lddgo.net/encrypt/hash" target="_blank">if you have hashLock, you can click here to get a hashLock</a>
       <br>
       <br>

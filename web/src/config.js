@@ -1,4 +1,4 @@
-let contractABI = [
+let contractABI =[
 	{
 		"anonymous": false,
 		"inputs": [
@@ -228,6 +228,11 @@ let contractABI = [
 						"internalType": "bool",
 						"name": "invalid",
 						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "contactInformation",
+						"type": "string"
 					}
 				],
 				"internalType": "struct RentalContract.RentalProperty[]",
@@ -304,6 +309,11 @@ let contractABI = [
 						"internalType": "bool",
 						"name": "invalid",
 						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "contactInformation",
+						"type": "string"
 					}
 				],
 				"internalType": "struct RentalContract.RentalProperty",
@@ -378,6 +388,11 @@ let contractABI = [
 				"internalType": "bool",
 				"name": "invalid",
 				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "contactInformation",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -412,6 +427,11 @@ let contractABI = [
 				"internalType": "uint256",
 				"name": "_rent",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_contactIinformation",
+				"type": "string"
 			}
 		],
 		"name": "publishProperty",
@@ -535,7 +555,6 @@ let contractABI = [
 	}
 ]
 
-
-const contractAddress = '0x2c2f93e0aBE5383386D857FB4ee813f6D06138A8';
+const contractAddress = '0xae5b9dd908f4FcE19847D8D98a3CA973f3e1511E';
 
 export { contractABI, contractAddress };

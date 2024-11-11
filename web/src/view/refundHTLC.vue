@@ -39,10 +39,9 @@
       async onSubmit() {
         try {
           let ans = await this.refundHTLC(this.form.propertyId, this.form.usr_addr);
-          console.log(ans);
           this.result = ans;
         } catch (error) {
-          this.result = error.message;
+          this.result = "Sorry, because the time lock has not expired yet or you are not the corresponding tenant of the room, you cannot proceed with the refund operation";
         }
       }
     }

@@ -5,7 +5,7 @@
             <el-input v-model="form.propertyId" placeholder="please input property Id" />
         </el-form-item>
         <el-form-item label="user account">
-            <el-input v-model="form.propertyId" placeholder="please input your user account" />
+            <el-input v-model="form.usr_addr" placeholder="please input your user account" />
         </el-form-item>
 
         <el-form-item>
@@ -13,7 +13,9 @@
         </el-form-item>
 
     </el-form>
-
+    <div v-if="result">
+        <h1>Congratulations! Your lease has been renewed.</h1>
+    </div>
     </div>
 
 </template>

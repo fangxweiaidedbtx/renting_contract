@@ -41,7 +41,11 @@
         try {
           let ans = await this.returnDeposit(this.form.propertyId, this.form.usr_addr);
           console.log(ans);
-          this.result = ans;
+          if(ans){
+            this.result = ans;
+          }else{
+            this.result = "Sorry, because the time lock has not expired yet or you are not the corresponding tenant of the room, you cannot proceed with the refund operation"
+          }
         } catch (error) {
           this.result = error.message;
         }
