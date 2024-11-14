@@ -555,6 +555,6 @@ let contractABI =[
 	}
 ]
 
-const contractAddress = '0xae5b9dd908f4FcE19847D8D98a3CA973f3e1511E';
+const contractAddress = '0x6df297841780d8Fa266773b9215a648d31A2AAED';
 
 export { contractABI, contractAddress };
